@@ -10,44 +10,54 @@ import { useContext } from "react";
 
 const Todolist = () => {
   const { todos, setTodos } = useContext(TodoContext);
-  const [alignment, setAlignment] = React.useState("web");
+  const [alignment, setAlignment] = React.useState("all");
   const [showTodos, setShowTodos] = React.useState([]);
 
+  // hooks
   useEffect(() => {
-    const savedTodos = JSON.parse(localStorage.getItem("ListOfTodos"));
+    const savedTodos = JSON.parse(localStorage.getItem("ListOfTodos")) || [];
     setShowTodos(savedTodos);
     setTodos(savedTodos);
   }, []);
 
-const completeTodos = useMemo(() => todos.filter((t) => t.status === true),
- [todos]);
+  const completeTodos = useMemo(
+    () => todos?.filter((t) => t.status === true),
+    [todos]
+  );
 
+  const NotCompleteTodos = useMemo(
+    () =>
+      todos?.filter((t) => {
+        return t.status === false;
+      }),
+    [todos]
+  );
+
+  const allTodos = useMemo(
+    () =>
+      todos?.map((t) => {
+        return t;
+      }),
+    [todos]
+  );
+
+  const Viewtodos = showTodos?.map((t) => {
+    return <Todo key={t.id} todo={t} />;
+  });
+
+  // handlers
   function handleCompleteTodos() {
     setShowTodos(completeTodos);
   }
-  const NotCompleteTodos = useMemo(() => todos.filter((t) => {
-    return t.status === false;
-  }), [todos]);
-
   function handleNotCompleteTodos() {
     setShowTodos(NotCompleteTodos);
   }
-
-  const allTodos =useMemo(()=>todos?.map((t) => {
-    return t;
-  }),[todos])
-
   function handleAllTodos() {
     setShowTodos(allTodos);
   }
-
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
-
-  const Alltodos =allTodos?.map((t) => {
-    return <Todo key={t.id} todo={t} />;
-  });
 
   return (
     <Container
@@ -78,9 +88,7 @@ const completeTodos = useMemo(() => todos.filter((t) => t.status === true),
             aria-label="Platform"
             style={{ marginTop: "20px" }}
           >
-            <ToggleButton
-
-            value="all" onClick={handleAllTodos}>
+            <ToggleButton value="all" onClick={handleAllTodos}>
               الكل
             </ToggleButton>
             <ToggleButton value="complete" onClick={handleCompleteTodos}>
@@ -99,7 +107,7 @@ const completeTodos = useMemo(() => todos.filter((t) => t.status === true),
               maxHeight: "42vh",
             }}
           >
-            {Alltodos}
+            {Viewtodos}
             {/* Add Todo */}
           </Container>
           <AddTodo />
