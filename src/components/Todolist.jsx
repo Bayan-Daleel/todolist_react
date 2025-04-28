@@ -11,12 +11,10 @@ import { useContext } from "react";
 const Todolist = () => {
   const { todos, setTodos } = useContext(TodoContext);
   const [alignment, setAlignment] = React.useState("all");
-  const [showTodos, setShowTodos] = React.useState([]);
 
   // hooks
   useEffect(() => {
     const savedTodos = JSON.parse(localStorage.getItem("ListOfTodos")) || [];
-    setShowTodos(savedTodos);
     setTodos(savedTodos);
   }, []);
 
@@ -41,20 +39,13 @@ const Todolist = () => {
     [todos]
   );
 
-  const Viewtodos = showTodos?.map((t) => {
-    return <Todo key={t.id} todo={t} />;
-  });
-
+  let showTodos = todos;
+  if (alignment === "complete") {
+     showTodos = completeTodos;
+  }else if (alignment === "notComplete") {
+     showTodos = NotCompleteTodos;
+  }
   // handlers
-  function handleCompleteTodos() {
-    setShowTodos(completeTodos);
-  }
-  function handleNotCompleteTodos() {
-    setShowTodos(NotCompleteTodos);
-  }
-  function handleAllTodos() {
-    setShowTodos(allTodos);
-  }
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
@@ -88,13 +79,13 @@ const Todolist = () => {
             aria-label="Platform"
             style={{ marginTop: "20px" }}
           >
-            <ToggleButton value="all" onClick={handleAllTodos}>
+            <ToggleButton value="all" >
               الكل
             </ToggleButton>
-            <ToggleButton value="complete" onClick={handleCompleteTodos}>
+            <ToggleButton value="complete" >
               المنجز
             </ToggleButton>
-            <ToggleButton value="notComplete" onClick={handleNotCompleteTodos}>
+            <ToggleButton value="notComplete">
               غير المنجز
             </ToggleButton>
           </ToggleButtonGroup>
@@ -107,7 +98,9 @@ const Todolist = () => {
               maxHeight: "42vh",
             }}
           >
-            {Viewtodos}
+            {showTodos?.map((t) => {
+              return <Todo key={t.id} todo={t} />;
+            })}
             {/* Add Todo */}
           </Container>
           <AddTodo />
