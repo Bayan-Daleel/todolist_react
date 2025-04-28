@@ -176,7 +176,7 @@ const Todo = ({ todo }) => {
           direction="rtl"
         >
           <Grid size={8} textAlign={"right"}>
-            <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+            <Typography variant="h5" sx={{ fontWeight: "bold" ,textDecoration: todo.status ? "line-through" : "none"}}>
               {" "}
               {todo.title}
             </Typography>

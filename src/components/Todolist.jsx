@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import Container from "@mui/material/Container";
 import { Card, Divider, Typography, CardContent } from "@mui/material";
 import ToggleButton from "@mui/material/ToggleButton";
@@ -19,32 +19,33 @@ const Todolist = () => {
     setTodos(savedTodos);
   }, []);
 
+const completeTodos = useMemo(() => todos.filter((t) => t.status === true),
+ [todos]);
+
   function handleCompleteTodos() {
-    const completeTodos = todos.filter((t) => {
-      if (t.status === true) return t; 
-    });
     setShowTodos(completeTodos);
   }
+  const NotCompleteTodos = useMemo(() => todos.filter((t) => {
+    return t.status === false;
+  }), [todos]);
 
   function handleNotCompleteTodos() {
-    const NotCompleteTodos = todos.filter((t) => {
-      if (t.status === false) return t;
-    });
     setShowTodos(NotCompleteTodos);
   }
 
+  const allTodos =useMemo(()=>todos?.map((t) => {
+    return t;
+  }),[todos])
+
   function handleAllTodos() {
-    const AllTodos = todos.map((t) => {
-      return t;
-    });
-    setShowTodos(AllTodos);
+    setShowTodos(allTodos);
   }
 
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
 
-  const Alltodos =showTodos.map((t) => {
+  const Alltodos =allTodos?.map((t) => {
     return <Todo key={t.id} todo={t} />;
   });
 
@@ -77,7 +78,9 @@ const Todolist = () => {
             aria-label="Platform"
             style={{ marginTop: "20px" }}
           >
-            <ToggleButton value="all" onClick={handleAllTodos}>
+            <ToggleButton
+
+            value="all" onClick={handleAllTodos}>
               الكل
             </ToggleButton>
             <ToggleButton value="complete" onClick={handleCompleteTodos}>

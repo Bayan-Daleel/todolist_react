@@ -53,12 +53,20 @@ function App() {
     typography: {
       fontFamily: 'MyFont, sans-serif',
     },
+    palette: {
+      primary: {
+        main: '#1976d2',
+      },
+      secondary: {
+        main: '#dc004e',
+      },
+    },
   });
 const [todos ,setTodos]=useState(initialTodoList)
   return (
     <ThemeProvider theme={theme}>
     <div className="App" style={{display:"flex" ,alignItems:"center",justifyContent:"center",height:"100vh" , backgroundColor:"#262B32", direction:"rtl" ,fontFamily:"MyFont"}}> 
-  <TodoContext.Provider value={{todos ,setTodos}}>  
+    <TodoContext.Provider value={{todos ,setTodos}}>  
     <Todolist/>
     </TodoContext.Provider>
     </div>
