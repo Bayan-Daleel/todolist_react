@@ -2,28 +2,22 @@ import React from "react";
 import { Button, IconButton, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { useContext } from "react";
-import TodoContext from "../contexts/TodoContext";
-import Todo from "./Todo";
-import { stringify } from "uuid";
-import { v4 as uvidv4 } from "uuid";
+import { useTodo } from "../contexts/TodoContext";
+
+import { useToast } from "../contexts/ToastContext";
 
 const AddTodo = () => {
-  const { todos, setTodos } = useContext(TodoContext);
+  const {dispatch } = useTodo();
   const [addTodo, setAddTodo] = React.useState({ title: "", details: "" });
-
+  const { setOpenSnakeBar, setTitleSnakeBar } = useToast();
   function handleAddClick() {
     // Add the new todo item to the list
-    const newTodo = {
-      id: uvidv4(),
-      title: addTodo.title,
-      details: "",
-      status: false,
-    };
-    const newTodos = [...todos, newTodo];
-    setTodos((prevTodos) => [...prevTodos, newTodo]);
-    localStorage.setItem("ListOfTodos", JSON.stringify(newTodos));
-    console.log(JSON.parse(localStorage.getItem("ListOfTodos")));
+    dispatch({
+      type: "ADD_TODO",
+      payload: addTodo,
+    });
+    setOpenSnakeBar(true);
+    setTitleSnakeBar("تمت إضافة المهمة بنجاح");
     setAddTodo({ title: "", details: "" });
   }
   return (
