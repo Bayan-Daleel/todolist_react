@@ -1,0 +1,23 @@
+{
+  "My Todo List": "My Todo List",
+  "ALL": "All",
+  "COMPLETED": "Completed",
+  "NOT COMPLETED": "Not Completed",
+  "Edit": "Edit",
+  "Cancel": "Cancel",
+  "Are you sure you want to delete this task?": "Are you sure you want to delete this task?",
+  "If you delete the task, you can't undo this action.": "If you delete the task, you can't undo this action.",
+  "Close": "Close",
+  "Confirm": "Confirm",
+  "Edit the task as you like": "Edit the task as you like",
+  "Title": "Title",
+  "Details": "Details",
+  "Task deleted successfully": "Task deleted successfully",
+  "Task updated successfully": "Task updated successfully",
+  "English": "English",
+  "عربي": "Arabic",
+  "ENTER_TASK": "Enter task",
+  "ADD": "Add",
+  "TASK_ADDED_SUCCESS": "Task added successfully",
+   "TASK_STATUS_UPDATED_SUCCESS": "Task status updated successfully"
+}

@@ -6,6 +6,7 @@ import { ToastProvider } from "./contexts/ToastContext.js";
 import TodoProvider from "../src/contexts/TodoContext.js";
 import { useEffect } from "react";
 import { useTodo } from "./contexts/TodoContext.js"; // Import useTodo
+import { LanguageProvider } from "../src/contexts/LanguageContext.js";
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <LanguageProvider>
         <TodoProvider>
       <ToastProvider>
         <div
@@ -44,6 +46,7 @@ function App() {
         </div>
       </ToastProvider>
       </TodoProvider>
+      </LanguageProvider>
     </ThemeProvider>
   );
 }

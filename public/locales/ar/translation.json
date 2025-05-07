@@ -1,0 +1,23 @@
+{
+  "My Todo List": "قائمة مهامي  ",
+  "ALL": "الكل",
+  "COMPLETED": "منجز",
+  "NOT COMPLETED": "غير منجز",
+  "Edit": "تعديل",
+  "Cancel": "إلغاء",
+  "Are you sure you want to delete this task?": "هل أنت متأكد أنك تريد حذف هذه المهمة؟",
+  "If you delete the task, you can't undo this action.": "في حال قمت بحذف المهمة لا يمكنك التراجع",
+  "Close": "إغلاق",
+  "Confirm": "تأكيد",
+  "Edit the task as you like": "قم بتعديل المهمة كما تريد",
+  "Title": "العنوان",
+  "Details": "التفاصيل",
+  "Task deleted successfully": "تم حذف المهمة بنجاح",
+  "Task updated successfully": "تم تعديل المهمة بنجاح",
+  "English": "English",
+  "عربي": "Arabic",
+  "ENTER_TASK": "ادخل المهمة",
+  "ADD": "إضافة",
+  "TASK_ADDED_SUCCESS": "تمت إضافة المهمة بنجاح",
+    "TASK_STATUS_UPDATED_SUCCESS": "تم تغيير حالة المهمة بنجاح"
+}

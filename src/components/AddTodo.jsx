@@ -1,25 +1,30 @@
-import React from "react";
-import { Button, IconButton, Typography } from "@mui/material";
+import React, { useContext } from "react";
+import { Button, TextField } from "@mui/material";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
 import { useTodo } from "../contexts/TodoContext";
-
 import { useToast } from "../contexts/ToastContext";
+import { useTranslation } from "react-i18next";
+import LanguageContext  from "../contexts/LanguageContext";
+
 
 const AddTodo = () => {
-  const {dispatch } = useTodo();
+  const { dispatch } = useTodo();
   const [addTodo, setAddTodo] = React.useState({ title: "", details: "" });
   const { setOpenSnakeBar, setTitleSnakeBar } = useToast();
+  const { t } = useTranslation();
+  const {Lang , setLang }=useContext(LanguageContext)
+
+
   function handleAddClick() {
-    // Add the new todo item to the list
     dispatch({
       type: "ADD_TODO",
       payload: addTodo,
     });
     setOpenSnakeBar(true);
-    setTitleSnakeBar("تمت إضافة المهمة بنجاح");
+    setTitleSnakeBar(t("TASK_ADDED_SUCCESS"));
     setAddTodo({ title: "", details: "" });
   }
+
   return (
     <Box
       sx={{
@@ -28,13 +33,13 @@ const AddTodo = () => {
         justifyContent: "space-between",
         gap: 2,
         alignItems: "stretch",
+        direction:Lang === "ar" ? "rtl" : "ltr"
       }}
     >
       <TextField
         required
         id="outlined-required"
-        label="ادخل المهمة"
-        defaultValue="اسم المهمة"
+        label={t("ENTER_TASK")}
         fullWidth
         sx={{ flex: 4, width: "100%" }}
         value={addTodo.title}
@@ -43,16 +48,14 @@ const AddTodo = () => {
       <Button
         onClick={handleAddClick}
         variant="contained"
-        bgcolor="primary"
         sx={{
           width: "100%",
           color: "#fff",
           flex: 1,
         }}
-        disabled={addTodo.title.length > 0 ? false : true}
+        disabled={addTodo.title.length === 0}
       >
-        {" "}
-        إضافة
+        {t("ADD")}
       </Button>
     </Box>
   );
