@@ -1,8 +1,8 @@
 {
   "My Todo List": "قائمة مهامي  ",
   "ALL": "الكل",
-  "COMPLETED": "منجز",
-  "NOT COMPLETED": "غير منجز",
+  "Completed": "منجز",
+  "Not Completed": "غير منجز",
   "Edit": "تعديل",
   "Cancel": "إلغاء",
   "Are you sure you want to delete this task?": "هل أنت متأكد أنك تريد حذف هذه المهمة؟",

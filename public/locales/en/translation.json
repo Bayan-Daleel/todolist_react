@@ -1,8 +1,8 @@
 {
   "My Todo List": "My Todo List",
   "ALL": "All",
-  "COMPLETED": "Completed",
-  "NOT COMPLETED": "Not Completed",
+  "Completed": "Completed",
+  "NOT Completed": "Not Completed",
   "Edit": "Edit",
   "Cancel": "Cancel",
   "Are you sure you want to delete this task?": "Are you sure you want to delete this task?",

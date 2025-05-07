@@ -215,7 +215,7 @@ const Todolist = () => {
                 direction:Lang === "ar" ? "rtl" : "ltr",
                }}
             >
-              <ToggleButton value="all">{t("All")}</ToggleButton>
+              <ToggleButton value="all">{t("ALL")}</ToggleButton>
               <ToggleButton value="complete">{t("Completed")}</ToggleButton>
               <ToggleButton value="notComplete">{t("Not Completed")}</ToggleButton>
             </ToggleButtonGroup>
